@@ -33,6 +33,8 @@ public class login extends javax.swing.JFrame {
         btnVerificar = new javax.swing.JButton();
         lblComentario = new javax.swing.JLabel();
         lblResultado = new javax.swing.JLabel();
+        btn_cargarResultados = new javax.swing.JButton();
+        btn_cargarPuntuacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +54,15 @@ public class login extends javax.swing.JFrame {
 
         lblResultado.setText("jLabel2");
 
+        btn_cargarResultados.setText("Cargar resultados");
+        btn_cargarResultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cargarResultadosActionPerformed(evt);
+            }
+        });
+
+        btn_cargarPuntuacion.setText("Cargar puntuación");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,31 +71,38 @@ public class login extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblComentario)
-                    .addComponent(btnVerificar)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_cargarResultados)
+                        .addGap(53, 53, 53)
+                        .addComponent(btn_cargarPuntuacion))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblResultado)
-                .addGap(18, 18, 18))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnVerificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblResultado))
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cargarResultados)
+                    .addComponent(btn_cargarPuntuacion))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(btnVerificar)
-                .addGap(18, 18, 18)
-                .addComponent(lblComentario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblResultado)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVerificar)
+                    .addComponent(lblResultado))
+                .addGap(29, 29, 29)
+                .addComponent(lblComentario))
         );
 
         pack();
@@ -205,6 +223,10 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerificarActionPerformed
 
+    private void btn_cargarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarResultadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cargarResultadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +264,8 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVerificar;
+    private javax.swing.JButton btn_cargarPuntuacion;
+    private javax.swing.JButton btn_cargarResultados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblComentario;
     private javax.swing.JLabel lblResultado;
