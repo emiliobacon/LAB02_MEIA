@@ -11,12 +11,17 @@ import java.util.Scanner;
  * @author emilio
  */
 public class login extends javax.swing.JFrame {
+    
+    public static int linea1 = 0, linea2 = 0, linea3 = 0, linea4 = 0, linea5 = 0, linea6 = 0, linea7 = 0, linea8 = 0;
+    public static int inf1 = 0, sup1 = 0, inf2 = 0, sup2 = 0, inf3 = 0, sup3 = 0, inf4 = 0, sup4 = 0;
 
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+        
+        
     }
 
     /**
@@ -92,8 +97,6 @@ public class login extends javax.swing.JFrame {
 
     private void btnVerificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerificarMouseClicked
 
-        int linea1 = 0, linea2 = 0, linea3 = 0, linea4 = 0, linea5 = 0, linea6 = 0, linea7 = 0, linea8 = 0;
-        int inf1 = 0, sup1 = 0, inf2 = 0, sup2 = 0, inf3 = 0, sup3 = 0, inf4 = 0, sup4 = 0;
         
         
         String Password = new String(txtContrasena.getPassword());
