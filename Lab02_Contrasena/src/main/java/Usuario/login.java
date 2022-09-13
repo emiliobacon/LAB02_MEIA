@@ -5,18 +5,27 @@
 package Usuario;
 
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author emilio
  */
 public class login extends javax.swing.JFrame {
-
+    
+    int linea1 = 0, linea2 = 0, linea3 = 0, linea4 = 0, linea5 = 0, linea6 = 0, linea7 = 0, linea8 = 0;
+    int inf1 = 0, sup1 = 0, inf2 = 0, sup2 = 0, inf3 = 0, sup3 = 0, inf4 = 0, sup4 = 0;
+        
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+        
     }
 
     /**
@@ -52,7 +61,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        lblResultado.setText("jLabel2");
+        lblResultado.setText("0");
 
         btn_cargarResultados.setText("Cargar resultados");
         btn_cargarResultados.addActionListener(new java.awt.event.ActionListener() {
@@ -62,34 +71,43 @@ public class login extends javax.swing.JFrame {
         });
 
         btn_cargarPuntuacion.setText("Cargar puntuación");
+        btn_cargarPuntuacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cargarPuntuacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblComentario)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_cargarResultados)
-                        .addGap(53, 53, 53)
-                        .addComponent(btn_cargarPuntuacion))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(46, 46, 46)
+                        .addComponent(lblComentario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVerificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblResultado))
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                                .addComponent(btn_cargarResultados)
+                                .addGap(53, 53, 53)
+                                .addComponent(btn_cargarPuntuacion))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnVerificar)
+                                        .addGap(59, 59, 59)
+                                        .addComponent(lblResultado))
+                                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cargarResultados)
                     .addComponent(btn_cargarPuntuacion))
@@ -101,7 +119,7 @@ public class login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerificar)
                     .addComponent(lblResultado))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(lblComentario))
         );
 
@@ -110,9 +128,7 @@ public class login extends javax.swing.JFrame {
 
     private void btnVerificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerificarMouseClicked
 
-        int linea1 = 0, linea2 = 0, linea3 = 0, linea4 = 0, linea5 = 0, linea6 = 0, linea7 = 0, linea8 = 0;
-        int inf1 = 0, sup1 = 0, inf2 = 0, sup2 = 0, inf3 = 0, sup3 = 0, inf4 = 0, sup4 = 0;
-        
+       
         
         String Password = new String(txtContrasena.getPassword());
         Scanner scan = new Scanner(System.in);
@@ -224,8 +240,125 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void btn_cargarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarResultadosActionPerformed
-        // TODO add your handling code here:
+     JFileChooser accion = null;       //variable escogedor de archivos
+     File archivo = null;              //variable de tipo File, guarda la información del archivo seleccionado
+     accion = new JFileChooser("./");  //abre en la ruta (./) que es la ruta del proyecto
+     accion.setFileSelectionMode(0);
+     FileNameExtensionFilter filtro = new FileNameExtensionFilter("TXT", "txt"); //creamos filtro
+     accion.setFileFilter(filtro); //aplicamos filtro
+     accion.setDialogTitle("Abrir archivo"); // Titulo de la ventana de selección de 
+     
+     if (accion.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { //caso en que escogimos archivos.
+            archivo = accion.getSelectedFile(); //archivo va a ser igual al archivo que escogimos
+            System.out.println(accion.getSelectedFile().toString()); //Imprimir ruta de mi archivo
+            try {
+                /*Si existe el fichero*/
+                if (archivo.exists()) {
+                    FileReader lectura = new FileReader(archivo);
+                    String texto = "", linea = "";
+                    BufferedReader br = new BufferedReader(lectura);
+                    String[] accion_archivo;
+                    
+                    int cont=1;
+                    while ((linea = br.readLine()) != null) {
+                        accion_archivo = linea.split(","); // separar el archivo de texto
+                        if(cont == 1){
+                            inf1 = Integer.parseInt(accion_archivo[0]);
+                            sup1 = Integer.parseInt(accion_archivo[1]);
+                        }
+                        else if(cont == 2){
+                            inf2 = Integer.parseInt(accion_archivo[0]);
+                            sup2 = Integer.parseInt(accion_archivo[1]);
+                        }
+                        else if(cont == 3){
+                            inf3 = Integer.parseInt(accion_archivo[0]);
+                            sup3 = Integer.parseInt(accion_archivo[1]);
+                        }
+                        else if(cont == 4){
+                            inf4 = Integer.parseInt(accion_archivo[0]);
+                            sup4 = Integer.parseInt(accion_archivo[1]);
+                        }
+                        
+                        cont++;
+                    }
+                    System.out.println("");
+                    
+                } else {
+                    System.out.println("Fichero No Existe");
+                }
+            } catch (Exception ex) {
+                /*Captura un posible error y le imprime n pantalla*/
+                System.out.println(ex.getMessage());
+            }
+        } else { // caso en que no escogimos archivo.
+            System.out.println("No se selecciono archivo");
+        }
+        
     }//GEN-LAST:event_btn_cargarResultadosActionPerformed
+
+    private void btn_cargarPuntuacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarPuntuacionActionPerformed
+     JFileChooser accion = null;       //variable escogedor de archivos
+     File archivo = null;              //variable de tipo File, guarda la información del archivo seleccionado
+     accion = new JFileChooser("./");  //abre en la ruta (./) que es la ruta del proyecto
+     accion.setFileSelectionMode(0);
+     FileNameExtensionFilter filtro = new FileNameExtensionFilter("TXT", "txt"); //creamos filtro
+     accion.setFileFilter(filtro); //aplicamos filtro
+     accion.setDialogTitle("Abrir archivo"); // Titulo de la ventana de selección de 
+     
+     if (accion.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { //caso en que escogimos archivos.
+            archivo = accion.getSelectedFile(); //archivo va a ser igual al archivo que escogimos
+            System.out.println(accion.getSelectedFile().toString()); //Imprimir ruta de mi archivo
+            try {
+                /*Si existe el fichero*/
+                if (archivo.exists()) {
+                    FileReader lectura = new FileReader(archivo);
+                    String texto = "", linea = "";
+                    BufferedReader br = new BufferedReader(lectura);
+                    String[] accion_archivo;
+                    
+                    int cont=1;
+                    while ((linea = br.readLine()) != null) {
+                        accion_archivo = linea.split(";"); // separar el archivo de texto
+                        if(cont == 1){
+                            linea1 = Integer.parseInt(accion_archivo[0]);
+                        }
+                        else if(cont == 2){
+                            linea2 = Integer.parseInt(accion_archivo[0]);
+                        }
+                        else if(cont == 3){
+                            linea3 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        else if(cont == 4){
+                            linea4 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        else if(cont == 5){
+                            linea5 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        else if(cont == 6){
+                            linea6 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        else if(cont == 7){
+                            linea7 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        else if(cont == 8){
+                            linea8 = Integer.parseInt(accion_archivo[0]); 
+                        }
+                        
+                        cont++;
+                    }
+                    System.out.println("");
+                    
+                } else {
+                    System.out.println("Fichero No Existe");
+                }
+            } catch (Exception ex) {
+                /*Captura un posible error y le imprime n pantalla*/
+                System.out.println(ex.getMessage());
+            }
+        } else { // caso en que no escogimos archivo.
+            System.out.println("No se selecciono archivo");
+        } 
+    }//GEN-LAST:event_btn_cargarPuntuacionActionPerformed
 
     /**
      * @param args the command line arguments
